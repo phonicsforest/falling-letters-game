@@ -9,7 +9,7 @@
       margin: 0;
       overflow: hidden;
       font-family: Arial, sans-serif;
-      background-image: url('background.png');
+      background-image: url('background.webp');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -179,7 +179,7 @@
 </div>
 
 
-  <img src="a2.png" id="sadFace" style="position:fixed;bottom:80px;left:50px;height:auto;z-index:5;pointer-events:none;">
+  <img src="a2.webp" id="sadFace" style="position:fixed;bottom:80px;left:50px;height:auto;z-index:5;pointer-events:none;">
 
   <!-- Sounds -->
   <audio id="clickSound" src="eating-apple-81019.mp3"></audio>
@@ -309,8 +309,8 @@
     document.getElementById("clickSound").cloneNode(true).play();
 
     const sadFace = document.getElementById("sadFace");
-    sadFace.src = "a2_apple.png";
-    setTimeout(() => sadFace.src = "a2.png", 500);
+    sadFace.src = "a2_apple.webp";
+    setTimeout(() => sadFace.src = "a2.webp", 500);
 
     if (!clickedLetters.includes(letterText)) clickedLetters.push(letterText);
 
@@ -354,7 +354,7 @@
     letter.classList.add("letter");
 
     const appleImg = document.createElement("img");
-    appleImg.src = "apple.png";
+    appleImg.src = "apple.webp";
     appleImg.classList.add("apple");
 
     const letterSpan = document.createElement("span");
@@ -382,7 +382,7 @@
 if (topPosition + 288 >= window.innerHeight) {
   clearInterval(currentFallInterval);
   currentFallInterval = null;
-  appleImg.src = "apple_broken.png";
+  appleImg.src = "apple_broken.webp";
   letter.removeEventListener("click", normalClickHandler);
   letter.addEventListener("click", () => handleBrokenClick(letter, letterText));
 
