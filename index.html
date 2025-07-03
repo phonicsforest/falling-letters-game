@@ -92,11 +92,13 @@
       transform: translate(-50%, -50%);
       font-size: 48px;
       background: rgba(75, 46, 30, 0.9);
-      padding: 20px 40px;
+      padding: 10px 20px;
       border-radius: 10px;
       display: none;
       z-index: 20;
       text-align: center;
+	 max-width: 90vw;
+  word-break: keep-all;
     }
 
     #restartBtn, #startBtn {
@@ -173,6 +175,10 @@
     width: 45%;
     font-size: 90%;
   }
+
+.result-column div {
+  white-space: nowrap;
+}
 }
   </style>
 </head>
