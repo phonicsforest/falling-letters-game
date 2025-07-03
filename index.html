@@ -78,7 +78,7 @@
       top: 10px;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 24px;
+      font-size: 20px;
       z-index: 10;
       background-color: rgba(75, 46, 30, 0.7);
       padding: 6px 12px;
@@ -87,6 +87,10 @@
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
+ justify-content: center;
+  flex-direction: row;
+ max-width: 90vw;
+  margin: 0 auto;
     }
 
     #gameOver {
@@ -183,10 +187,12 @@
   }
 
   #settings select,
-  #settings input {
-    width: 100%;
-    font-size: 18px;
-  }
+ #settings input {
+  font-size: 18px;
+  padding: 5px;
+  min-width: 120px;
+  flex: 1;
+}
 }
 
 
