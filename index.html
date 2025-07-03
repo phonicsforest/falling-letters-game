@@ -207,24 +207,36 @@
 #gameOverText {
   font-size: 70%;
 }
+.setting-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.setting-group label {
+  color: white;
+}
 }
   </style>
 </head>
 <body>
   <div id="remainBox"><div id="remainText"></div></div>
 
-  <div id="settings">
-    Speed:
+ <div id="settings">
+  <div class="setting-group">
+    <label for="speedSelect">Speed:</label>
     <select id="speedSelect">
       <option value="0.1">Super Slow</option>
       <option value="0.5" selected>Slow</option>
       <option value="1.5">Fast</option>
       <option value="3">Super Fast</option>
     </select>
-    &nbsp;&nbsp;
-    Lesson:
-    <input type="text" id="rangeInput" value="1" style="width: 160px;" />
   </div>
+  <div class="setting-group">
+    <label for="rangeInput">Lesson:</label>
+    <input type="text" id="rangeInput" value="1" />
+  </div>
+</div>
 
   <div id="gameOver">
     <span id="gameOverText">Game Over!</span>
