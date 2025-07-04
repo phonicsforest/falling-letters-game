@@ -29,6 +29,8 @@
   cursor: pointer;
   user-select: none;
   animation: fadeIn 0.5s forwards;
+left: 50%;
+transform: translateX(-50%);
 }
 
 @media (max-width: 600px) {
@@ -179,21 +181,15 @@
     transform-origin: left bottom;
   }
 }
-@media (max-width: 600px) {
-  #settings {
-    flex-direction: column;
-    font-size: 20px;
-    padding: 8px;
-    gap: 6px;
-  }
-}
-  #settings select,
- #settings input {
+
+ #settings select,
+#settings input {
   font-size: 18px;
   padding: 5px;
-  min-width: 120px;
-  flex: 1;
+  width: 120px;
+  max-width: 40vw;
 }
+
 
  .result-column {
     width: 45%;
@@ -218,6 +214,13 @@
 @media (max-width: 400px) {
   #settings {
     font-size: 16px;
+  }
+}
+@media (max-width: 600px) {
+  .setting-group {
+    flex-direction: row;
+    flex: 1;
+    min-width: 140px;
   }
 }
 }
@@ -442,7 +445,9 @@
 
     letter.appendChild(appleImg);
     letter.appendChild(letterSpan);
-    letter.style.left = getRandomX() + "px";
+   letter.style.left = "50%";
+letter.style.transform = "translateX(-50%)";
+
     letter.style.top = "0px";
     document.body.appendChild(letter);
     currentLetter = letter;
