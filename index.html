@@ -77,20 +77,20 @@ transform: translateX(-50%);
 
     #settings {
       position: fixed;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 20px;
-      z-index: 10;
-      background-color: rgba(75, 46, 30, 0.7);
-      padding: 6px 12px;
-      border-radius: 6px;
- display: flex;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  z-index: 10;
+  background-color: rgba(75, 46, 30, 0.7);
+  padding: 6px 12px;
+  border-radius: 6px;
+  display: flex;
   align-items: center;
-justify-content: space-between;
   gap: 10px;
-  flex-wrap: nowrap;
- max-width: 90vw;
+  flex-wrap: wrap; /* ✅ 預設為wrap，desktop安全 */
+  justify-content: center;
+  max-width: 95vw;
   box-sizing: border-box;
     }
 
@@ -183,10 +183,9 @@ justify-content: space-between;
 
  #settings select,
 #settings input {
-  font-size: 16px;
-  padding: 4px;
-  width: auto;
-  max-width: 40vw; /* ✅ 限制寬度避免擠爆 */
+  font-size: 14px;
+    padding: 4px;
+    max-width: 40vw;
 }
 
 
@@ -213,18 +212,15 @@ justify-content: space-between;
 .setting-group label {
   color: white;
 }
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   #settings {
     font-size: 16px;
+    flex-wrap: nowrap; /* ✅ 手機就用nowrap，不換行 */
   }
-}
-@media (max-width: 600px) {
   .setting-group {
-    flex-direction: row;
-    flex: 1;
-    min-width: 140px;
+   flex: 1 1 auto;
+    min-width: 0;
   }
-}
 }
   </style>
 </head>
