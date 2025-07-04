@@ -181,13 +181,22 @@ top: 10px;
   }
 }
 
- #settings select,
+#settings select,
 #settings input {
   font-size: 14px;
   padding: 4px;
-  width: 100%;         /* 讓佢根據 flex 自適應 */
-  min-width: 0;
+  width: auto;
+  min-width: 60px;
+  max-width: 100px; /* ✅ 加上這條限制最大長度 */
+  flex: 1 1 auto;
   box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  #settings select,
+  #settings input {
+    max-width: 80px;
+  }
 }
 
  .result-column {
