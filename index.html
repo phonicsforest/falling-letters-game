@@ -87,12 +87,11 @@ transform: translateX(-50%);
       border-radius: 6px;
  display: flex;
   align-items: center;
+justify-content: space-between;
   gap: 10px;
-  flex-wrap: wrap;
- justify-content: center;
-  flex-direction: row;
+  flex-wrap: nowrap;
  max-width: 90vw;
-  margin: 0 auto;
+  box-sizing: border-box;
     }
 
     #gameOver {
@@ -184,10 +183,10 @@ transform: translateX(-50%);
 
  #settings select,
 #settings input {
-  font-size: 18px;
-  padding: 5px;
-  width: 120px;
-  max-width: 40vw;
+  font-size: 16px;
+  padding: 4px;
+  width: auto;
+  max-width: 40vw; /* ✅ 限制寬度避免擠爆 */
 }
 
 
@@ -205,6 +204,9 @@ transform: translateX(-50%);
 .setting-group {
   display: flex;
   align-items: center;
+   flex-shrink: 1;
+  flex-basis: 0;
+  min-width: 0;
   gap: 6px;
 }
 
