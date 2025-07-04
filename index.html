@@ -76,21 +76,21 @@ transform: translateX(-50%);
     #remainBox .big-number { font-size: 100%; }
 
     #settings {
-      position: fixed;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
+      display: flex;
+   flex-wrap: wrap; /* ✅ 預設為wrap，desktop安全 */
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  max-width: 95vw;
   font-size: 20px;
-  z-index: 10;
   background-color: rgba(75, 46, 30, 0.7);
   padding: 6px 12px;
   border-radius: 6px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap; /* ✅ 預設為wrap，desktop安全 */
-  justify-content: center;
-  max-width: 95vw;
+ position: fixed;
+top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
   box-sizing: border-box;
     }
 
@@ -184,10 +184,11 @@ transform: translateX(-50%);
  #settings select,
 #settings input {
   font-size: 14px;
-    padding: 4px;
-    max-width: 40vw;
+  padding: 4px;
+  width: 100%;         /* 讓佢根據 flex 自適應 */
+  min-width: 0;
+  box-sizing: border-box;
 }
-
 
  .result-column {
     width: 45%;
@@ -203,10 +204,10 @@ transform: translateX(-50%);
 .setting-group {
   display: flex;
   align-items: center;
-   flex-shrink: 1;
-  flex-basis: 0;
+     gap: 6px;
   min-width: 0;
-  gap: 6px;
+flex: 1 1 0;
+  white-space: nowrap;
 }
 
 .setting-group label {
@@ -219,7 +220,6 @@ transform: translateX(-50%);
   }
   .setting-group {
    flex: 1 1 auto;
-    min-width: 0;
   }
 }
   </style>
