@@ -137,20 +137,21 @@ top: 10px;
   box-sizing: border-box;
 }
 
-    #resultBox {
-      font-size: 80%;
-      margin-top: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
-    }
+   #resultBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  font-size: 20px; /* 初始字體，會被 JS 覆蓋 */
+  padding: 10px;
+}
 
-    .result-column {
-      display: flex;
-      flex-direction: column;
-      align-items: start;
-    }
+.result-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 100px;
+}
 @media (max-width: 600px) {
   #startScreen {
     font-size: 32px;
@@ -341,10 +342,11 @@ flex: 1 1 0;
     "30": ["wor", "oar"],
     "31": ["war", "ire"],
     "32": ["-or", "-er", "-ar", "-a"],
-    "33": ["-tion", "-sion"],
+    "33": ["tion", "sion"],
     "34": ["-o", "-ow"],
     "35": ["-el", "-al", "-le"],
-    "36": ["ture"]
+    "36": ["ture"],
+    "37": ["ed","ted","ded"]
     };
 
     const rangeInput = document.getElementById("rangeInput").value.trim();
@@ -367,30 +369,43 @@ flex: 1 1 0;
     return selectedLetters.length ? selectedLetters : [].concat(...Object.values(letterMap));
   }
 
-  function showResult() {
-    const resultBox = document.getElementById("resultBox");
-    resultBox.innerHTML = "";
+ function showResult() {
+  const resultBox = document.getElementById("resultBox");
+  resultBox.innerHTML = "";
 
-    const entries = Object.entries(resultMap);
-    const columns = Math.ceil(entries.length / 10);
-    const colArrays = Array.from({ length: columns }, () => []);
+  const entries = Object.entries(resultMap);
+  const colArrays = [];
 
-    entries.forEach(([letter, count], i) => {
-      colArrays[Math.floor(i / 10)].push(`${letter} x ${count}`);
-    });
-
-    resultBox.innerHTML = "";
-    colArrays.forEach(col => {
-      const div = document.createElement("div");
-      div.className = "result-column";
-      col.forEach(line => {
-        const p = document.createElement("div");
-        p.innerText = line;
-        div.appendChild(p);
-      });
-      resultBox.appendChild(div);
-    });
+  for (let i = 0; i < entries.length; i += 10) {
+    colArrays.push(entries.slice(i, i + 10));
   }
+
+  resultBox.innerHTML = "";
+  colArrays.forEach(col => {
+    const div = document.createElement("div");
+    div.className = "result-column";
+    col.forEach(([letter, count]) => {
+      const p = document.createElement("div");
+      p.innerText = `${letter} x ${count}`;
+      div.appendChild(p);
+    });
+    resultBox.appendChild(div);
+  });
+
+  // ⬇ 動態縮小字體大小
+  setTimeout(() => {
+    const gameOverBox = document.getElementById("gameOver");
+    const maxHeight = window.innerHeight * 0.9;
+    let fontSize = 20;
+
+    // 試著慢慢縮小直到不溢出
+    while (gameOverBox.scrollHeight > maxHeight && fontSize > 10) {
+      fontSize--;
+      resultBox.style.fontSize = fontSize + "px";
+    }
+  }, 0);
+}
+
 
   function handleNormalClick(letter, letterText) {
     clearInterval(currentFallInterval);
@@ -398,7 +413,8 @@ flex: 1 1 0;
     currentLetter = null;
     remainCount--;
     updateRemainDisplay();
-    document.getElementById("clickSound").cloneNode(true).play();
+   const audio = new Audio(`${letterText}.mp3`);
+audio.play();
 
     const sadFace = document.getElementById("sadFace");
     sadFace.src = "a2_apple.webp";
@@ -424,6 +440,8 @@ flex: 1 1 0;
     
     isGameOver = false;
     setTimeout(createFallingLetter, 500);
+const audio = new Audio(`${letterText}.mp3`);
+audio.play();
   }
 
   function createFallingLetter() {
